@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 import my_settings  # my_setting.py의 설정을 적용하기 위해 임포트
 
 
@@ -40,6 +41,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bbs.apps.BbsConfig',
+    'bootstrap4',
+    'user.apps.UserConfig',
+
+
+
+
+]
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static')
 ]
 
 MIDDLEWARE = [
@@ -57,7 +70,7 @@ ROOT_URLCONF = 'studyDjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -115,6 +128,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# 인증에 사용할 class를 지정
+
+AUTH_USER_MODEL = 'user.User'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
